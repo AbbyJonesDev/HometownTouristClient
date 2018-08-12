@@ -1,23 +1,18 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
+  <div id="app" class="wrapper">
+    <Navigation />
     <router-view/>
   </div>
 </template>
 
 <script>
+import './styles/global.css';
+import Navigation from './components/navigation/Navigation';
+
 export default {
   name: 'app',
+  components: {
+    Navigation,
+  },
 };
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
