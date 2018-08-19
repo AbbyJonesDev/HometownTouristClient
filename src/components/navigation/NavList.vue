@@ -3,27 +3,36 @@
     <i class="fas fa-bars fa-2x" @click="toggleMobileMenu"></i>
     <!-- <i class="fas fa-search fa-2x"></i> -->
     <ul :class="{ showMobile: showMobileMenu }">
-        <li>Categories</li>
+        <li @click="toggleCategories">Categories</li>
         <li>Events</li>
         <li>Authors</li>
     </ul>
+    <CategoryList v-if="showCategories" />
 </div>
 </template>
 
 <script>
-    export default {
-      name: 'NavList',
-      data() {
-        return {
-          showMobileMenu: false,
-        };
-      },
-      methods: {
-        toggleMobileMenu() {
-          this.showMobileMenu = !this.showMobileMenu;
-        },
-      },
-    };
+  import { mapState, mapMutations } from 'vuex';
+  import CategoryList from './CategoryList';
+
+  export default {
+    name: 'NavList',
+    components: {
+      CategoryList,
+    },
+    computed: {
+      ...mapState('nav', {
+        showMobileMenu: state => state.showMobileMenu,
+        showCategories: state => state.showCategories,
+      }),
+    },
+    methods: {
+      ...mapMutations('nav', [
+        'toggleMobileMenu',
+        'toggleCategories',
+      ]),
+    },
+  };
 </script>
 
 <style scoped>
